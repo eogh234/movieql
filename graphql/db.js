@@ -14,3 +14,14 @@ export const getMovies = (limit, rating) => {
         .then(res => res.json())
         .then(json => json.data.movies);
 }
+
+export const getMovie = id => {
+    let movieList = [];
+    return fetch(API_URL)
+        .then(res => res.json())
+        .then(json => {
+            movieList = json.data.movies
+            const filteredMovies = movieList.filter(movie => movie.id === id);
+            return filteredMovies[0];
+        });
+}
